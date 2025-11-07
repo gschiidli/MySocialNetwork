@@ -12,8 +12,28 @@ extension ContactsClient: TestDependencyKey {
   public static let testValue = ContactsClient(
     fetchContacts: {
       [
-        Contact(id: "1", givenName: "John", familyName: "Appleseed"),
-        Contact(id: "2", givenName: "Jane", familyName: "Doe"),
+        Contact(
+          id: "1",
+          givenName: "John",
+          familyName: "Appleseed",
+          relations: [
+            Contact.Relation(
+              name: "Jane",
+              relationType: nil,
+            )
+          ]
+        ),
+        Contact(
+          id: "2",
+          givenName: "Jane",
+          familyName: "Doe",
+          relations: [
+            Contact.Relation(
+              name: "John",
+              relationType: "sister",
+            )
+          ]
+        ),
         Contact(id: "3", givenName: "Bob", familyName: "Smith"),
       ]
     }

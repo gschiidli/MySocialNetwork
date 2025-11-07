@@ -30,6 +30,27 @@ public struct ContactDetailView: View {
       Section("Information") {
         LabeledContent("Contact ID", value: store.contact.id)
       }
+
+      if !store.contact.relations.isEmpty {
+        Section("Relationships") {
+          ForEach(store.contact.relations, id: \.name) { relation in
+            HStack {
+              Image(systemName: "person.2.fill")
+                .foregroundStyle(.green)
+              VStack(alignment: .leading, spacing: 4) {
+                Text(relation.name)
+                  .font(.headline)
+                if let relationType = relation.relationType {
+                  Text(relationType)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                }
+              }
+            }
+            .padding(.vertical, 4)
+          }
+        }
+      }
     }
     .navigationTitle("\(store.contact.givenName) \(store.contact.familyName)")
     .navigationBarTitleDisplayMode(.inline)

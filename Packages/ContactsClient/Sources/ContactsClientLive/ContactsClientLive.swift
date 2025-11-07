@@ -15,24 +15,33 @@ extension ContactsClient: DependencyKey {
         throw ContactsError.accessDenied
       }
 
-      // Define the keys we want to fetch
+      // Fetch all contacts with their relations
       let keysToFetch: [CNKeyDescriptor] = [
+        CNContactIdentifierKey as CNKeyDescriptor,
         CNContactGivenNameKey as CNKeyDescriptor,
         CNContactFamilyNameKey as CNKeyDescriptor,
-        CNContactIdentifierKey as CNKeyDescriptor,
+        CNContactRelationsKey as CNKeyDescriptor,
       ]
 
-      // Fetch all contacts
       let request = CNContactFetchRequest(keysToFetch: keysToFetch)
       var contacts: [Contact] = []
 
+      // First pass: build contact name lookup and initialize contacts
       try store.enumerateContacts(with: request) { cnContact, _ in
-        let contact = Contact(
-          id: cnContact.identifier,
-          givenName: cnContact.givenName,
-          familyName: cnContact.familyName
+        let relations = cnContact.contactRelations.map { relation in
+          Contact.Relation(
+            name: relation.value.name,
+            relationType: relation.label,
+          )
+        }
+        contacts.append(
+          Contact(
+            id: cnContact.identifier,
+            givenName: cnContact.givenName,
+            familyName: cnContact.familyName,
+            relations: relations
+          )
         )
-        contacts.append(contact)
       }
 
       return contacts
