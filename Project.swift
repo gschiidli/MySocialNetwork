@@ -28,12 +28,15 @@ let project = Project(
           ],
           "NSContactsUsageDescription":
             "This app needs access to your contacts to display them in a list.",
+          "CKSharingSupported": true,
+          "UIBackgroundModes": ["remote-notification"],
         ]
       ),
       buildableFolders: [
         "MySocialNetwork/Sources",
         "MySocialNetwork/Resources",
       ],
+      entitlements: "MySocialNetwork/Resources/MySocialNetwork.entitlements",
       dependencies: [
         .package(product: "AppFeature"),
         .package(product: "ContactsClientLive"),

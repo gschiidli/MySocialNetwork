@@ -10,6 +10,10 @@ struct MySocialNetworkApp: App {
   public init() {
     prepareDependencies {
       $0.defaultDatabase = try! appDatabase()
+      $0.defaultSyncEngine = try! SyncEngine(
+        for: $0.defaultDatabase,
+        tables: ContactRelationship.self
+      )
     }
 
     self.store = Store(initialState: AppFeature.State()) {

@@ -14,8 +14,11 @@ func appDatabase() throws -> any DatabaseWriter {
   @Dependency(\.context) var context
   var configuration = Configuration()
 
-  #if DEBUG
-    configuration.prepareDatabase { db in
+  configuration.prepareDatabase { db in
+    // Attach metadata database for CloudKit sync
+    try db.attachMetadatabase()
+
+    #if DEBUG
       db.trace(options: .profile) {
         if context == .preview {
           print("\($0.expandedDescription)")
@@ -23,8 +26,8 @@ func appDatabase() throws -> any DatabaseWriter {
           logger.debug("\($0.expandedDescription)")
         }
       }
-    }
-  #endif
+    #endif
+  }
 
   let database = try defaultDatabase(configuration: configuration)
   logger.info("open '\(database.path)'")
@@ -35,15 +38,32 @@ func appDatabase() throws -> any DatabaseWriter {
   #endif
 
   migrator.registerMigration("Create tables") { db in
-    // TODO: Add your table creation SQL here
-    // Example:
-    // try #sql("""
-    //   CREATE TABLE "users"(
-    //     "id" INT NOT NULL PRIMARY KEY AUTOINCREMENT,
-    //     "name" TEXT NOT NULL
-    //   ) STRICT
-    //   """)
-    //   .execute(db)
+    // ContactRelationship table - Tracks relationships between contacts
+    // This is a root record that can be shared via CloudKit
+    try #sql("""
+      CREATE TABLE "contactRelationships"(
+        "id" TEXT PRIMARY KEY NOT NULL ON CONFLICT REPLACE DEFAULT (uuid()),
+        "contactID1" TEXT NOT NULL,
+        "contactID2" TEXT NOT NULL,
+        "relationType1To2" TEXT NOT NULL,
+        "relationType2To1" TEXT NOT NULL,
+        "createdAt" REAL NOT NULL DEFAULT (unixepoch())
+      ) STRICT
+      """)
+      .execute(db)
+
+    // Create indexes for efficient queries
+    try #sql("""
+      CREATE INDEX "idx_contactRelationships_contactID1"
+      ON "contactRelationships"("contactID1")
+      """)
+      .execute(db)
+
+    try #sql("""
+      CREATE INDEX "idx_contactRelationships_contactID2"
+      ON "contactRelationships"("contactID2")
+      """)
+      .execute(db)
   }
 
   try migrator.migrate(database)
