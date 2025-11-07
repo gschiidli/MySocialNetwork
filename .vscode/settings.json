@@ -1,5 +1,6 @@
 {
     "sweetpad.build.xcodeWorkspacePath": "MySocialNetwork.xcworkspace",
+    "sweetpad.tuist.autogenerate": true,
     "[swift]": {
         "editor.defaultFormatter": "sweetpad.sweetpad",
         "editor.formatOnSave": true

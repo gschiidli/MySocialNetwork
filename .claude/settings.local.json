@@ -6,7 +6,15 @@
       "mcp__XcodeBuildMCP__list_schemes",
       "mcp__XcodeBuildMCP__build_run_sim",
       "mcp__XcodeBuildMCP__open_sim",
-      "mcp__XcodeBuildMCP__stop_app_sim"
+      "mcp__XcodeBuildMCP__stop_app_sim",
+      "Bash(tuist generate:*)",
+      "mcp__XcodeBuildMCP__screenshot",
+      "mcp__XcodeBuildMCP__describe_ui",
+      "mcp__XcodeBuildMCP__tap",
+      "WebFetch(domain:swiftpackageindex.com)",
+      "WebFetch(domain:pointfreeco.github.io)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
     ]
   },
   "enabledMcpjsonServers": [
