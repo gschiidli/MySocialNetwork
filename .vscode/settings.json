@@ -1,0 +1,7 @@
+{
+    "sweetpad.build.xcodeWorkspacePath": "MySocialNetwork.xcworkspace",
+    "[swift]": {
+        "editor.defaultFormatter": "sweetpad.sweetpad",
+        "editor.formatOnSave": true
+    }
+}

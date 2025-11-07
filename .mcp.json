@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "tuist": {
+      "command": "tuist",
+      "args": ["mcp", "start"]
+    },
+    "XcodeBuildMCP": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "xcodebuildmcp@latest"
+      ]
+    }
+  }
+}

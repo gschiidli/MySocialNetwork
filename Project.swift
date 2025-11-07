@@ -7,7 +7,7 @@ let project = Project(
             name: "MySocialNetwork",
             destinations: .iOS,
             product: .app,
-            bundleId: "dev.tuist.MySocialNetwork",
+            bundleId: "com.MySocialNetwork.app",
             infoPlist: .extendingDefault(
                 with: [
                     "UILaunchScreen": [
@@ -26,7 +26,7 @@ let project = Project(
             name: "MySocialNetworkTests",
             destinations: .iOS,
             product: .unitTests,
-            bundleId: "dev.tuist.MySocialNetworkTests",
+            bundleId: "com.MySocialNetwork.app.tests",
             infoPlist: .default,
             buildableFolders: [
                 "MySocialNetwork/Tests"

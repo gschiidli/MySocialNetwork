@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__XcodeBuildMCP__discover_projs",
+      "mcp__XcodeBuildMCP__list_sims",
+      "mcp__XcodeBuildMCP__list_schemes",
+      "mcp__XcodeBuildMCP__build_run_sim",
+      "mcp__XcodeBuildMCP__open_sim",
+      "mcp__XcodeBuildMCP__stop_app_sim"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "tuist",
+    "XcodeBuildMCP"
+  ]
+}
