@@ -11,10 +11,18 @@ let package = Package(
   products: [
     .library(name: "Models", targets: ["Models"])
   ],
+  dependencies: [
+    .package(
+      url: "https://github.com/pointfreeco/sqlite-data",
+      from: "1.3.0"
+    )
+  ],
   targets: [
     .target(
       name: "Models",
-      dependencies: []
+      dependencies: [
+        .product(name: "SQLiteData", package: "sqlite-data")
+      ]
     )
   ]
 )

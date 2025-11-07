@@ -1,5 +1,6 @@
 import AppFeature
 import ComposableArchitecture
+import Models
 import SQLiteData
 import SwiftUI
 
@@ -12,7 +13,7 @@ struct MySocialNetworkApp: App {
       $0.defaultDatabase = try! appDatabase()
       $0.defaultSyncEngine = try! SyncEngine(
         for: $0.defaultDatabase,
-        tables: ContactRelationship.self
+        tables: Models.ContactRelationship.self
       )
     }
 
