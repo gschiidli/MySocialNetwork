@@ -14,7 +14,10 @@
       "WebFetch(domain:swiftpackageindex.com)",
       "WebFetch(domain:pointfreeco.github.io)",
       "WebSearch",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "mcp__XcodeBuildMCP__build_sim"
     ]
   },
   "enabledMcpjsonServers": [
