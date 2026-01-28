@@ -6,7 +6,7 @@ import StructuredQueries
 /// Represents a relationship between two contacts
 /// Can be shared via CloudKit to sync family/social connections
 @Table
-public struct ContactRelationship: Identifiable, Sendable {
+public struct ContactRelationship: Identifiable, Sendable, Equatable {
   public let id: UUID
   public var contactID1: String  // First contact identifier
   public var contactID2: String  // Second contact identifier

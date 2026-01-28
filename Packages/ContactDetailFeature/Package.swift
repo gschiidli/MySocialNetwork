@@ -16,6 +16,10 @@ let package = Package(
       url: "https://github.com/pointfreeco/swift-composable-architecture",
       from: "1.23.0"
     ),
+    .package(
+      url: "https://github.com/pointfreeco/sqlite-data",
+      from: "1.3.0"
+    ),
     .package(path: "../Models")
   ],
   targets: [
@@ -23,6 +27,7 @@ let package = Package(
       name: "ContactDetailFeature",
       dependencies: [
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        .product(name: "SQLiteData", package: "sqlite-data"),
         .product(name: "Models", package: "Models")
       ]
     )

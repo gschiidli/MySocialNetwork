@@ -17,7 +17,7 @@ let project = Project(
   targets: [
     .target(
       name: "MySocialNetwork",
-      destinations: [.iPhone, .iPad, .mac],
+      destinations: [.iPhone, .iPad],
       product: .app,
       bundleId: "com.MySocialNetwork.app",
       infoPlist: .extendingDefault(
@@ -46,7 +46,7 @@ let project = Project(
     ),
     .target(
       name: "MySocialNetworkTests",
-      destinations: [.iPhone, .iPad, .mac],
+      destinations: [.iPhone, .iPad],
       product: .unitTests,
       bundleId: "com.MySocialNetwork.app.tests",
       infoPlist: .default,
